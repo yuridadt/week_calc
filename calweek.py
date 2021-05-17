@@ -10,9 +10,9 @@ class CalWeek:
         self.year, self.week = [int(val) for val in year_week.split('-')]
 
         if self.year < 1 or self.year > 9999:
-            raise ValueError('Введите год правильно')
+            raise ValueError('Input year in the correct way')
         if self.week < 1 or self.week > 52:
-            raise ValueError('Введите неделю правильно')
+            raise ValueError('Input week in the correct way')
 
         if format == '%G-%V':
             format = '%G-%V-%u'
@@ -27,7 +27,7 @@ class CalWeek:
         if isinstance(other, int):
             return datetime.strftime(self.cur_date + timedelta(weeks=other), '%G-%V')
         else:
-            raise TypeError('Введите количество недель числом')
+            raise TypeError('Input weeks in numeric format')
 
     def __radd__(self, other):
         return self.__add__(other)
@@ -38,7 +38,7 @@ class CalWeek:
         elif isinstance(other, CalWeek):
             return (self.cur_date - other.cur_date).days // 7
         else:
-            raise TypeError('Введите количество недель числом')
+            raise TypeError('Input weeks in numeric format')
 
 
 if __name__ == '__main__':
